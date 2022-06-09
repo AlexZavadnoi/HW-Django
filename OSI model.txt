@@ -1,0 +1,10 @@
+"Basic Reference Model Open System Interconnection model"
+"Эталонная открытая сетевая модель"
+
+1. Physical layer - Физический уолвень
+2. Data and link layer - Канальный уровень
+3. Network layer - Сетевой уровень
+4. Transport layer - Транспортный уровень
+5. Session layer - Сеансовый уровень
+6. Presentation layer - Представления уровень
+7. Application layer - Прикладной уровень
