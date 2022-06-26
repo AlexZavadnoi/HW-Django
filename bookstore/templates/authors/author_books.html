@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .card {padding: 10px 30px;
+    border-radius: 5px;}
+</style>
+<body>
+
+<div class="card">
+    <div class="card-body">
+
+        {% for author_book in author_books%}
+        <h3 class="card-text">{{author_book.title}}</h3>
+        <p class="card-small">{{author_book.description}}</p>
+        <p>Years: {{author_book.released_year}} </p>
+        {% endfor %}
+
+        <a href=" {% url 'list_1' %} " class="btn btn-primary"> Come back </a>
+
+    </div>
+</div>
+
+</body>
+</html>

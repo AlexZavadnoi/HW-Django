@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .row {}
+    .col {}
+    .card-body {}
+</style>
+<body>
+{% for book in books %}
+<div class="row">
+    <div class="col">Bookstore.com
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ book.title|slice:25}}</h2>
+                <p class="card-text">{{ book.description|slice:40 }}</p>
+
+                <a href="{% url 'home' %}" class="btn btn-primary"> Come Back </a>
+                <a href="{% url 'detail_books' book.id %}" class="btn btn-primary"> More </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>
+
+
