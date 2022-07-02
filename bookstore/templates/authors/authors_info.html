@@ -5,18 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Author info</title>
 </head>
+
+<style>
+    .card-body {
+    max-width: 1000px;
+    margin: auto;
+    }
+</style>
 
 <body>
 
 <div class="card">
     <div class="card-body">
 
-        <h3 class="card-text">{{first_name}}</h3>
-        <h3 class="card-text">{{last_name}}</h3>
-        <p class="card-small">Age: {{age}}</p>
+        <h3 class="card-text">{{author.first_name}}</h3>
+        <h3 class="card-text">{{author.last_name}}</h3>
+        <p class="card-small">Age: {{author.age}}</p>
 
-        <a href=" {% url 'list' %} " class="btn btn-primary"> Come back </a>
+        <a href=" {% url 'list' %} " class="btn btn-primary"> Return </a>
     </div>
 </div>
 

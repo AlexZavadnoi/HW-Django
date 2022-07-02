@@ -5,28 +5,66 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Books List</title>
 </head>
-<style>
-    .row {}
-    .col {}
-    .card-body {}
-</style>
-<body>
-{% for book in books %}
-<div class="row">
-    <div class="col">Bookstore.com
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">{{ book.title|slice:25}}</h2>
-                <p class="card-text">{{ book.description|slice:40 }}</p>
 
-                <a href="{% url 'home' %}" class="btn btn-primary"> Come Back </a>
-                <a href="{% url 'detail_books' book.id %}" class="btn btn-primary"> More </a>
-            </div>
+<style>
+    .card {padding: 10px 30px;
+    }
+    .a {padding: 10px 30px;
+    }
+    .row1 {  max-width: 500px;
+    margin: auto;
+    }
+    .row2 {  max-width: 800px;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 15px;
+    }
+    .add { float: right;
+    }
+</style>
+
+<body>
+<center class="row1">
+    <div>
+        <h1> Bookstore.com </h1>
+    </div>
+</center>
+
+<body>
+<div class="a">
+    <form action="" method="get">
+        <input type="text" name="search" value="{{ search }}" placeholder="Enter title book">
+        <input type="submit" value="Search">
+    </form>
+
+    <div class="add">
+        <p>New Book</p>
+        <a href="{% url 'add_book' %}" class="btn btn-primary"> + Add Book </a>
+    </div>
+</div>
+
+{% if books %}
+{% for book in books %}
+<div class="row2">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ book.title|upper|slice:25 }}</h2>
+            <p class="card-text">{{ book.description|truncatewords:10 }}</p>
+
+            <a href="{% url 'home' %}" class="btn btn-primary"> Return </a>
+            <a href="{% url 'detail_books' book.id %}" class="btn btn-primary"> More </a>
+
         </div>
     </div>
 </div>
 {% endfor %}
+{% else %}
+Sorry there is not books with search phrase "{{ search }}"
+{% endif %}
+
+
 </body>
 </html>
 

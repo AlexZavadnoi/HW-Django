@@ -5,18 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Bootstrap Example</title>
+    <title>Books info</title>
 </head>
 
 <body>
 <div class="card">
     <div class="card-header">Bookstore.com</div>
     <div class="card-body">
-        <h3 class="card-title">{{title|center:"15"}}</h3>
-        <p class="card-text">{{description}}</p>
-        <p>Years: {{released_year}} </p>
-        <a href="{% url 'list' %}" class="btn btn-primary"> Come Back </a>
-        <a href="{% url 'detail_authors' id %}" class="btn btn-primary"> Authors </a>
+        <h3 class="card-title">{{ book.title|center:"15" }}</h3>
+        <p class="card-text">{{ book.description }}</p>
+        <p>Years: {{ book.released_year }} </p>
+        <a href="{% url 'list' %}" class="btn btn-primary"> Return </a>
+        {% if book.author_id %}
+        <a href="{% url 'detail_authors' book.author_id %}" class="btn btn-primary"> Authors </a>
+        {% else %}
+        No Author
+        {% endif %}
     </div>
 </div>
 </body>
