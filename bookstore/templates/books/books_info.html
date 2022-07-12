@@ -12,16 +12,40 @@
 <div class="card">
     <div class="card-header">Bookstore.com</div>
     <div class="card-body">
-        <h3 class="card-title">{{ book.title|center:"15" }}</h3>
-        <p class="card-text">{{ book.description }}</p>
-        <p>Years: {{ book.released_year }} </p>
+
+        <h3 class="card-title">{{ object.title|center:"15" }}</h3>
+        <p class="card-text">{{ object.description }}</p>
+        <p>Years: {{ object.released_year }} </p>
         <a href="{% url 'list' %}" class="btn btn-primary"> Return </a>
-        {% if book.author_id %}
-        <a href="{% url 'detail_authors' book.author_id %}" class="btn btn-primary"> Authors </a>
+
+        {% if object.author_id %}
+        <a href="{% url 'detail_authors' object.author_id %}" class="btn btn-primary"> Authors </a>
         {% else %}
         No Author
         {% endif %}
+    <div>
+        {% for review in object.reviews.all %}
+        <div>
+            Rating: {{review.rating}}
+            Text: {{review.text}}
+            User: {{review.user.username}}
+        </div>
+        {% endfor %}
     </div>
+    <div>
+        {% if user.is_authenticated %}
+        User: {{ user.get_username }}
+
+    <form class="card-body" action="{% url 'reviews_book' object.id %}" method="post">
+        {% csrf_token %}
+        {{ book_review_form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Добавить рецензию"/>
+    </form>
+        {% endif %}
+    </div>
+    </div>
+
+
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 books = [
     {
@@ -151,12 +151,11 @@ class Books(models.Model):
     description = models.TextField()
     released_year = models.IntegerField()
     author = models.ForeignKey(Authors, on_delete=models.CASCADE, blank=True, null=True)
-
+    rating = models.IntegerField(default=0)
 
     @staticmethod
     def create_books():
         for x in books:
-            # book = Books.objects.create()
             book = Books(title=x['title'], description=x['description'], released_year=x['released_year'],
                          author_id=x['author_id'])
             book.save()
@@ -164,5 +163,16 @@ class Books(models.Model):
     def __str__(self):
         return f'{self.pk}: {self.title}, {self.description}, {self.released_year}'
 
+    class Meta:
+        verbose_name = 'Book'
+        verbose_name_plural = 'Books'
 
 
+class ReviewBook(models.Model):
+    rating = models.SmallIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, related_name='reviews')
+    text = models.TextField()
+
+    class Meta:
+        unique_together = ('user', 'book')

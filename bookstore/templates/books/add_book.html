@@ -39,7 +39,7 @@
     </div>
 </center>
 <div>
-    <form class="card" action="{% url 'list' %}" method="post">
+    <form class="card-body" action="{% url 'list' %}" method="post">
         {% csrf_token %}
         {{ book_form.as_p }}
         <input class="btn btn-primary" type="submit" value="Добавить книгу"/>

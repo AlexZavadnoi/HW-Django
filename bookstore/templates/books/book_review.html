@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review</title>
+</head>
+<body>
+        {% if user.is_authenticated %}
+        User: {{ user.get_username }}
+
+    <form class="card" action="{% url 'detail_books' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Добавить рецензию"/>
+        <a href="{% url 'detail_books' %}" class="btn btn-primary"> Return </a>
+    </form>
+
+        {% else %}
+        No Register
+        {% endif %}
+</body>
+</html>
