@@ -1,0 +1,13 @@
+
+<div class="header">
+    <div>
+        {% if user is_authenticated %}
+            <a href="{% url 'Logout' %}"> Out {{user.username}} </a>
+        {% else %}
+            <a href="{% url 'Register' %}"> Register site </a>
+            <a href="{% url 'Login' %}"> Login and password </a>
+        {% endif %}
+    </div>
+
+    <h2>Blog name</h2>
+</div>
